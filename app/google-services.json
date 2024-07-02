@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1070966925244",
+    "project_id": "crud-d4f2f",
+    "storage_bucket": "crud-d4f2f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070966925244:android:82435d00a38f1327a7edb9",
+        "android_client_info": {
+          "package_name": "uday.tech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1070966925244-n5tda0vi5gei9j8l0seatto4qn0tn4ss.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uday.tech",
+            "certificate_hash": "7495a5644dacac2d92f333cf1cea29fbcb3a5893"
+          }
+        },
+        {
+          "client_id": "1070966925244-klqiclgo15a4dp0femdniau3uq034ui8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJXIybBjOikfGEdxPNeXKoyxAdJxrL5Js"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1070966925244-klqiclgo15a4dp0femdniau3uq034ui8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

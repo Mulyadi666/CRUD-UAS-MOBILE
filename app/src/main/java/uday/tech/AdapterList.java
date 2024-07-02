@@ -1,7 +1,7 @@
 package uday.tech;
 
 import android.view.LayoutInflater;
-import  android.view.View;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,8 +15,17 @@ import java.util.List;
 
 public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
     private List<ItemList> itemLists;
+    private onItemClickListener listener;
 
-    public AdapterList(List<ItemList> itemLists){
+    public interface onItemClickListener {
+        void onItemClick(ItemList item);
+    }
+
+    public void setOnItemClickListener(onItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public AdapterList(List<ItemList> itemLists) {
         this.itemLists = itemLists;
     }
 
@@ -34,6 +43,15 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
         holder.judul.setText(item.getJudul());
         holder.deskripsi.setText(item.getDeskripsi());
         Glide.with(holder.imageView.getContext()).load(item.getImgUrl()).into(holder.imageView);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onItemClick(item);
+                }
+            }
+        });
     }
 
     @Override
@@ -44,11 +62,12 @@ public class AdapterList extends RecyclerView.Adapter<AdapterList.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
         public TextView judul, deskripsi;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView=itemView.findViewById(R.id.item_img);
-            judul= itemView.findViewById(R.id.judul);
-            deskripsi= itemView.findViewById(R.id.deskripsi);
+            imageView = itemView.findViewById(R.id.item_img);
+            judul = itemView.findViewById(R.id.judul);
+            deskripsi = itemView.findViewById(R.id.deskripsi);
 
         }
     }

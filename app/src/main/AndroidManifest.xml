@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -15,8 +17,32 @@
         android:theme="@style/Theme.ListAndGrid"
         tools:targetApi="31">
         <activity
+            android:name=".EmailRegister"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="false"
+            android:theme="@style/Theme.Design" />
+        <activity
+            android:name=".Register"
+            android:exported="false"
+            android:theme="@style/Theme.Design.NoActionBar" />
+        <activity
+            android:name=".Login"
+            android:exported="false"
+            android:theme="@style/Theme.Design.NoActionBar" />
+        <activity
+            android:name=".NewsAdd"
+            android:exported="false"
+            android:theme="@style/Theme.Design" />
+        <activity
+            android:name=".NewsDetail"
+            android:exported="false"
+            android:theme="@style/Theme.Design" />
+        <activity
+            android:name=".Default"
+            android:exported="true"
+            android:theme="@style/Theme.Design">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

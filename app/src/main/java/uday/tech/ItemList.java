@@ -7,20 +7,20 @@ public class ItemList {
     private String imgUrl;
 
 
-
     public ItemList(String judul, String deskripsi, String imgUrl) {
         this.judul = judul;
         this.deskripsi = deskripsi;
         this.imgUrl = imgUrl;
     }
 
-    public String getId()  {
+    public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
     }
+
     public String getJudul() {
         return judul;
     }

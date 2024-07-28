@@ -14,7 +14,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -40,7 +42,9 @@ public class Login extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
     private ProgressBar progressBar;
-    private Button googleSignInButton,emailSignInButton;
+    private Button googleSignInButton, emailSignInButton;
+    private EditText emailEditText, passwordEditText;
+    private TextView registerTextView;
 
     @SuppressLint("MissingInflatedId")
 
@@ -76,7 +80,7 @@ public class Login extends AppCompatActivity {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account);
             } catch (ApiException e) {
-                Log.w(TAG, "Goofle sign in failed", e);
+                Log.w(TAG, "Google sign in failed", e);
                 progressBar.setVisibility(View.GONE);
                 Toast.makeText(Login.this, "Authentication failed", Toast.LENGTH_SHORT).show();
             }
@@ -97,15 +101,18 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         googleSignInButton = findViewById(R.id.googleSignInButton);
-//        emailSignInButton = findViewById(R.id.emailSignInButton);
+        emailEditText = findViewById(R.id.emailEditText);
+        passwordEditText = findViewById(R.id.passwordEditText);
+        emailSignInButton = findViewById(R.id.loginButtonEmail);
         progressBar = findViewById(R.id.progressBar);
+        registerTextView = findViewById(R.id.registerText);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-        .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
-        mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         mAuth = FirebaseAuth.getInstance();
 
         googleSignInButton.setOnClickListener(new View.OnClickListener() {
@@ -115,5 +122,51 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        emailSignInButton.setOnClickListener(v -> {
+            if (emailEditText.getText().length() > 0 && passwordEditText.getText().length() > 0) {
+                String email = emailEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
+                login(email, password);
+            } else {
+                Toast.makeText(getApplicationContext(), "Please masukan email dan password", Toast.LENGTH_SHORT).show();
+            }
+        });
+        registerTextView.setOnClickListener(v -> {
+            Intent intent = new Intent(Login.this, Register.class);
+            startActivity(intent);
+        });
+
+        checkUserSession();
+
+    }
+
+    private void login(String email, String password) {
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful() && task.getResult() != null) {
+                    if (task.getResult().getUser() != null) {
+                        reload();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Login failed cuy yang benererr", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Login failed cuy yang benererr", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void reload() {
+        Intent intent = new Intent(Login.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    private void checkUserSession() {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            startActivity(new Intent(Login.this, MainActivity.class));
+            finish();
+        }
     }
 }

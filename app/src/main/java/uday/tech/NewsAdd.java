@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -22,7 +23,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.HashMap;
 import java.util.Map;
 
-public class NewsAdd extends AppCompatActivity {
+public class NewsAdd extends android.app.Activity {
     String id = "", judul, deskripsi, image;
     private static final int PICK_IMAGE_REQUEST = 1;
 
@@ -34,6 +35,7 @@ public class NewsAdd extends AppCompatActivity {
     private FirebaseFirestore dbNews;
     private FirebaseStorage storage;
     private ProgressDialog progressDialog;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -150,6 +152,7 @@ public class NewsAdd extends AppCompatActivity {
                         nama.setText("");
                         desc.setText("");
                         imageView.setImageResource(0);
+
                     })
                     .addOnFailureListener(e -> {
                         progressDialog.dismiss();

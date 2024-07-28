@@ -1,9 +1,12 @@
-# <summary><strong>UAS Pemograman Mobile 1</strong></summary>
+# <strong>UAS <br>Pemograman Mobile 1</strong>
 
-CRUD dan Login Session Menggunakan Email dan Google
-Terimakasih
+- Login Session Menggunakan Email dan Google   <br>
+- CRUD 
+- Release APK sudah dilakukan <br>
+app>Release <br>
+Terimakasih 🙏
 
-# <summary><strong>Hi :wave: , I'm Adi Mulyadi</strong></summary>
+# <strong>Hi :wave: , I'm Adi Mulyadi</strong>
 <a>
 Kelas  : TIF 222K <br>
 NIM    : 22552011131</a>
